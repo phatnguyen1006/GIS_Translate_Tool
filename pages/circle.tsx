@@ -13,7 +13,10 @@ const Circle: NextPage = () => {
 
   return (
     <div className={styles.container}>
-      <div>This is input</div>
+      <div>Point</div>
+      <input type="text" id="point" name="point"/>
+      <div>Radius</div>
+      <input type="text" id="radius" name="radius"/>
       <div>{drawCircle()}</div>
     </div>
   )
