@@ -13,7 +13,7 @@ export const drawCircle = ({ direction, xStart, xEnd, yStart, yEnd }: circleProp
     const Z_OFFSET_PER_METER = 0.8
     const DELTA_X1 = -0.00000631194214
     const DELTA_Y1 = -0.000002728945365
-    const DELTA_X2 = -2.81E-06
+    const DELTA_X2 = -0.00000280644172091706
     const DELTA_Y2 = 0.000006225507939
     const LOOP_TIMES = 500
 

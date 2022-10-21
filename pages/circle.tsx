@@ -1,6 +1,4 @@
 import type { NextPage } from 'next'
-import Head from 'next/head'
-import Image from 'next/image'
 import { useState } from 'react'
 import styles from '../styles/Home.module.css'
 import { Input, Select, Button, Form } from 'antd';
@@ -56,8 +54,8 @@ const Circle: NextPage = () => {
       <Form {...layout} form={form} name="control-hooks" onFinish={onFinish} style={{backgroundColor: 'white'}}>
         <Form.Item name="direction" label="Direction" rules={[{ required: true }]}>
           <Select placeholder="Choose shift direction" style={{ width: 300 }}>
-            <Option value="0">Horizontal</Option>
-            <Option value="1">Vertical</Option>
+            <Option value="0">Ox</Option>
+            <Option value="1">Oy</Option>
 
           </Select>
         </Form.Item>
