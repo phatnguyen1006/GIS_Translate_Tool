@@ -7,7 +7,7 @@ import styles from '../styles/Home.module.css'
 import { Input, Select, Button, Form } from 'antd';
 
 import { CaretUpOutlined } from '@ant-design/icons';
-import { shiftPoint, shiftPointCrops } from '../function/shiftPoint'
+import { shiftPoint, ShiftPointCrops } from '../function/shiftPoint'
 
 const { Option } = Select;
 const { TextArea } = Input;
@@ -20,7 +20,7 @@ const layout = {
 const ShiftPoint: NextPage = () => {
 
 
-  const [formValue, setFormValue] = useState<shiftPointCrops>({
+  const [formValue, setFormValue] = useState<ShiftPointCrops>({
     axis: 0,
     direction: 0,
     lat: 0,
@@ -31,7 +31,7 @@ const ShiftPoint: NextPage = () => {
 
   const [form] = Form.useForm();
 
-  const onFinish = (values: shiftPointCrops) => {
+  const onFinish = (values: ShiftPointCrops) => {
     console.log(values)
     setFormValue(values)
   };
