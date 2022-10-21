@@ -21,6 +21,7 @@ const ShiftPoint: NextPage = () => {
 
 
   const [formValue, setFormValue] = useState<shiftPointCrops>({
+    axis: 0,
     direction: 0,
     lat: 0,
     lon: 0,
@@ -42,10 +43,16 @@ const ShiftPoint: NextPage = () => {
   return (
     <div className={styles.container}>
       <Form {...layout} form={form} name="control-hooks" onFinish={onFinish} style={{ backgroundColor: 'white' }}>
-        <Form.Item name="direction" label="Direction" rules={[{ required: true }]}>
-          <Select placeholder="Choose shift direction" style={{ width: 300 }}>
+        <Form.Item name="axis" label="Axis" rules={[{ required: true }]}>
+          <Select placeholder="Choose shift axis" style={{ width: 300 }}>
             <Option value="0">Ox</Option>
             <Option value="1">Oy</Option>
+          </Select>
+        </Form.Item>
+        <Form.Item name="direction" label="Direction" rules={[{ required: true }]}>
+          <Select placeholder="Choose shift direction" style={{ width: 300 }}>
+            <Option value="1">Positive</Option>
+            <Option value="-1">Negative</Option>
           </Select>
         </Form.Item>
         <Form.Item name="lon" label="Longitude" rules={[{ required: true }]}>
