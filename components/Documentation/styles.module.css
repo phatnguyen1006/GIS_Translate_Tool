@@ -1,0 +1,5 @@
+.documentContainer,
+.documentContainer>h1,
+.documentContainer>p {
+    color: white;
+}

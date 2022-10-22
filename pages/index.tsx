@@ -1,14 +1,25 @@
-import type { NextPage } from 'next'
-import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
+import { Button } from "antd";
+import { useRouter } from "next/router";
+import Documentation from "@components/Documentation";
+import { NextPage } from "next/types";
 
 const Home: NextPage = () => {
-  return (
-    <div className={styles.container}>
-      This is landing pages
-    </div>
-  )
-}
+  const router = useRouter();
 
-export default Home
+  const switchRoute = (pathName: string) => {
+    router.push(pathName);
+  };
+
+  return (
+    <div>
+      <Documentation />
+      <div>
+        <Button onClick={() => switchRoute("/circle")}>Draw circle</Button>
+        <Button onClick={() => switchRoute("/shift-point")}>Shift point</Button>
+        <Button onClick={() => switchRoute("/shift-block")}>Shift block</Button>
+      </div>
+    </div>
+  );
+};
+
+export default Home;

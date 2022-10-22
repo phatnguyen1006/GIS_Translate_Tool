@@ -9,6 +9,7 @@
     "allowJs": true,
     "skipLibCheck": true,
     "strict": false,
+    "noImplicitAny": false,
     "forceConsistentCasingInFileNames": true,
     "noEmit": true,
     "esModuleInterop": true,
@@ -22,6 +23,9 @@
     "paths": {
       "@constants": [
         "constants"
+      ],
+      "@components/*": [
+        "components/*"
       ],
       "@function": [
         "function"
