@@ -7,6 +7,7 @@ export const drawCircle = ({
   xEnd,
   yStart,
   yEnd,
+  z
 }: ICircleProps) => {
   if (xStart == 0 && xEnd == 0) return;
 
@@ -22,6 +23,8 @@ export const drawCircle = ({
     radius = Math.abs(radiusX / DELTA_X2);
   }
 
+  console.log(radius)
+
   for (let i = 1; i < LOOP_TIMES; i++) {
     let circleLineZ =
       Math.sqrt(
@@ -30,7 +33,7 @@ export const drawCircle = ({
           Z_OFFSET_PER_METER *
           radius *
           (1 - (i / (LOOP_TIMES / 2) - 1) * (i / (LOOP_TIMES / 2) - 1))
-      ) + 7;
+      ) + z;
     let x = xStart + (radiusX * i) / (LOOP_TIMES / 2);
     let y = yStart + (radiusY * i) / (LOOP_TIMES / 2);
     result += `[${x}, ${y}, ${circleLineZ}],\n`;

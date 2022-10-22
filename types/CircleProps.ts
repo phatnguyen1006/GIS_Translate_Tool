@@ -4,4 +4,5 @@ export interface ICircleProps {
   xEnd: number;
   yStart: number;
   yEnd: number;
+  z: number;
 }
