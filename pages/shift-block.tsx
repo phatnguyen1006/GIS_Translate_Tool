@@ -1,11 +1,13 @@
-import type { NextPage } from 'next';
-import { useState } from 'react';
-import styles from '../styles/Home.module.css'
-import { Input, Select, Button, Form } from 'antd';
+import { useState } from "react";
+import type { NextPage } from "next";
+import { Input, Select, Button, Form } from "antd";
+import { CaretUpOutlined } from "@ant-design/icons";
 
-import { CaretUpOutlined } from '@ant-design/icons';
-import { shiftPoint, ShiftPointCrops } from '../function/shiftPoint';
-import { splitFunction, ILocationInput } from "@function/splitLocation";
+import { shiftBlock } from "@function";
+import { ShiftPointCrops } from "@types";
+import { splitFunction, ILocationInput } from "@helpers";
+
+import styles from "../styles/Home.module.css";
 
 const { Option } = Select;
 const { TextArea } = Input;
@@ -16,22 +18,26 @@ const layout = {
 };
 
 const ShiftBlock: NextPage = () => {
-
-  const [formValue, setFormValue] = useState<Array<ShiftPointCrops>>([{
-    axis: 0,
-    direction: 0,
-    lat: 0,
-    lon: 0,
-    z: 0,
-    distance: 0
-  }]);
+  const [formValue, setFormValue] = useState<Array<ShiftPointCrops>>([
+    {
+      axis: 0,
+      direction: 0,
+      lat: 0,
+      lon: 0,
+      z: 0,
+      distance: 0,
+    },
+  ]);
+  const [shiftedLocation, setShiftedLocation] = useState<string>();
 
   const [form] = Form.useForm();
 
   const onFinish = (values: ILocationInput) => {
-    // console.log(values)
-    splitFunction(values);
-    // setFormValue([... formValue, values]);
+    const listShiftPointCrops = splitFunction(values);
+
+    if (Array.isArray(listShiftPointCrops)) {
+      setShiftedLocation(shiftBlock(listShiftPointCrops));
+    }
   };
 
   const onReset = () => {
@@ -40,14 +46,24 @@ const ShiftBlock: NextPage = () => {
 
   return (
     <div className={styles.container}>
-      <Form {...layout} form={form} name="control-hooks" onFinish={onFinish} style={{ backgroundColor: 'white' }}>
+      <Form
+        {...layout}
+        form={form}
+        name="control-hooks"
+        onFinish={onFinish}
+        style={{ backgroundColor: "white" }}
+      >
         <Form.Item name="axis" label="Axis" rules={[{ required: true }]}>
           <Select placeholder="Choose shift axis" style={{ width: 300 }}>
             <Option value="0">Ox</Option>
             <Option value="1">Oy</Option>
           </Select>
         </Form.Item>
-        <Form.Item name="direction" label="Direction" rules={[{ required: true }]}>
+        <Form.Item
+          name="direction"
+          label="Direction"
+          rules={[{ required: true }]}
+        >
           <Select placeholder="Choose shift direction" style={{ width: 300 }}>
             <Option value="1">Positive</Option>
             <Option value="-1">Negative</Option>
@@ -59,17 +75,31 @@ const ShiftBlock: NextPage = () => {
         <Form.Item name="lat" label="Latitude" rules={[{ required: true }]}>
           <Input placeholder='Latitude' />
         </Form.Item > */}
-        <Form.Item name={"location"} label="Location" rules={[{ required: true, type: 'string' }]}>
+        <Form.Item
+          name={"location"}
+          label="Location"
+          rules={[{ required: true, type: "string" }]}
+        >
           <Input.TextArea placeholder="[longtude, latitude]" />
         </Form.Item>
         <Form.Item name="z" label="Z offset" rules={[{ required: true }]}>
-          <Input placeholder='Z offset' />
-        </Form.Item >
-        <Form.Item name="distance" label="Distance" rules={[{ required: true }]}>
-          <Input placeholder='Distance' />
+          <Input placeholder="Z offset" />
+        </Form.Item>
+        <Form.Item
+          name="distance"
+          label="Distance"
+          rules={[{ required: true }]}
+        >
+          <Input placeholder="Distance" />
         </Form.Item>
         <Form.Item>
-          <Button type="primary" shape="round" icon={<CaretUpOutlined />} size={'large'} htmlType='submit'>
+          <Button
+            type="primary"
+            shape="round"
+            icon={<CaretUpOutlined />}
+            size={"large"}
+            htmlType="submit"
+          >
             Shift
           </Button>
           <Button htmlType="button" onClick={onReset}>
@@ -78,9 +108,13 @@ const ShiftBlock: NextPage = () => {
         </Form.Item>
       </Form>
 
-      <TextArea rows={10} placeholder="Result will be shown here, phờ rét cần trôn A tu cóp pi" value={shiftPoint(formValue[0])} />
+      <TextArea
+        rows={15}
+        placeholder="Result will be shown here, phờ rét cần trôn A tu cóp pi"
+        value={shiftedLocation}
+      />
     </div>
-  )
-}
+  );
+};
 
-export default ShiftBlock
+export default ShiftBlock;
