@@ -4,6 +4,7 @@ import Documentation from "@components/Documentation";
 import { NextPage } from "next/types";
 import styles from "../styles/Home.module.css";
 import AppRoute from "@routes";
+import Head from "next/head";
 
 const Home: NextPage = () => {
   const router = useRouter();
@@ -14,6 +15,10 @@ const Home: NextPage = () => {
 
   return (
     <div className={styles.landingPageContainer}>
+      <Head>
+        <title>Tools</title>
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+      </Head>
       <Documentation />
       <div className={styles.groupButtonContainer}>
         <Button type="primary" onClick={() => switchRoute(AppRoute.circle)}>Draw circle</Button>
