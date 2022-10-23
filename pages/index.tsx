@@ -18,10 +18,7 @@ const Home: NextPage = () => {
   const openNotificationWithIcon = (type: NotificationType) => {
     notification[type]({
       message: 'Tính năng hiện tại chưa khả dụng',
-      description:
-        <>
-          <h4>Sẽ được cập nhật ở phiên bản tiếp theo"</h4>
-        </>,
+      description: "Sẽ được cập nhật ở phiên bản tiếp theo",
     });
   };
 
