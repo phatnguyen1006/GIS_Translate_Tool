@@ -2,6 +2,8 @@ import { Button } from "antd";
 import { useRouter } from "next/router";
 import Documentation from "@components/Documentation";
 import { NextPage } from "next/types";
+import styles from "../styles/Home.module.css";
+import AppRoute from "@routes";
 
 const Home: NextPage = () => {
   const router = useRouter();
@@ -11,12 +13,12 @@ const Home: NextPage = () => {
   };
 
   return (
-    <div>
+    <div className={styles.landingPageContainer}>
       <Documentation />
-      <div>
-        <Button onClick={() => switchRoute("/circle")}>Draw circle</Button>
-        <Button onClick={() => switchRoute("/shift-point")}>Shift point</Button>
-        <Button onClick={() => switchRoute("/shift-block")}>Shift block</Button>
+      <div className={styles.groupButtonContainer}>
+        <Button type="primary" onClick={() => switchRoute(AppRoute.circle)}>Draw circle</Button>
+        <Button type="primary" onClick={() => switchRoute(AppRoute.shiftPoint)}>Shift point</Button>
+        <Button type="primary" onClick={() => switchRoute(AppRoute.shiftBlock)}>Shift block</Button>
       </div>
     </div>
   );

@@ -6,6 +6,7 @@ import { Input, Select, Button, Form } from "antd";
 import { HighlightOutlined } from "@ant-design/icons";
 import { drawCircle } from "@function";
 import { ICircleProps } from "@types";
+import DrawCircleDocumentation from "@components/Documentation/drawCircle.docs";
 
 const { Option } = Select;
 const { TextArea } = Input;
@@ -49,80 +50,64 @@ const Circle: NextPage = () => {
   };
 
   return (
-    <div className={styles.container}>
-      <p>
-        Vì viết tiếng Anh sợ người đọc không hiểu nên xin phép được viết tài liệu bằng tiếng việt 😊
-      </p>
-      <h3 style={{ color: "white" }}>
-        Vẽ nửa đường tròn
-      </h3>
-      <p>
-        Công cụ này giúp người dùng lấy được tập hợp toạ độ các điểm của một nửa đường tròn vẽ nằm trên trục Oz. Nhập các thông tin vào form bao gồm:
-      </p>
-      <ul>
-        <li>Axis là trục toạ độ mà đường tròn nằm trên đó cùng với trục Oz</li>
-        <li>Longitude start là kinh độ của điểm bắt đầu nửa đường tròn</li>
-        <li>Latitude start là vĩ độ của điểm bắt đầu nửa đường tròn</li>
-        <li>Longitude end là kinh độ của điểm kết thúc nửa đường tròn</li>
-        <li>Latitude end là vĩ độ của điểm kết thúc nửa đường tròn</li>
-        <li>X là toạ độ z của 2 điểm bắt đầu và kết thúc</li>
-      </ul>
-      <p>
-        Nhấn nút Draw, công cụ sẽ trả về toạ độ của danh sách điểm thuộc khối sau khi đã tịnh tiến.
-      </p>
-      <Form
-        {...layout}
-        form={form}
-        name="control-hooks"
-        onFinish={onFinish}
-        style={{ backgroundColor: "white" }}
-      >
-        <Form.Item
-          name="direction"
-          label="Axis"
-          rules={[{ required: true }]}
+    <div className={styles.shiftPage}>
+      <DrawCircleDocumentation />
+      <div className={styles.formArea} style={{ backgroundColor: "white" }}>
+        <Form
+          {...layout}
+          form={form}
+          name="control-hooks"
+          onFinish={onFinish}
+          className={styles.formContainer}
         >
-          <Select placeholder="Choose draw axis" style={{ width: 300 }}>
-            <Option value="0">Ox</Option>
-            <Option value="1">Oy</Option>
-          </Select>
-        </Form.Item>
-        <Form.Item name="xStart" label="Longitude start" rules={[{ required: true }]}>
-          <Input placeholder="Longitude start" />
-        </Form.Item>
-        <Form.Item name="yStart" label="Latitude start" rules={[{ required: true }]}>
-          <Input placeholder="Latitude start" />
-        </Form.Item>
-        <Form.Item name="xEnd" label="Longitude end" rules={[{ required: true }]}>
-          <Input placeholder="Longitude end" />
-        </Form.Item>
-        <Form.Item name="yEnd" label="Latitude end" rules={[{ required: true }]}>
-          <Input placeholder="Latitude end" />
-        </Form.Item>
-        <Form.Item name="z" label="Z" rules={[{ required: true }]}>
-          <Input placeholder="Z" />
-        </Form.Item>
-        <Form.Item>
-          <Button
-            type="primary"
-            shape="round"
-            icon={<HighlightOutlined />}
-            size={"large"}
-            htmlType="submit"
+          <Form.Item
+            name="direction"
+            label="Axis"
+            rules={[{ required: true }]}
           >
-            Draw
-          </Button>
-          <Button htmlType="button" onClick={onReset}>
-            Reset
-          </Button>
-        </Form.Item>
-      </Form>
+            <Select placeholder="Choose draw axis" style={{ width: 300 }}>
+              <Option value="0">Ox</Option>
+              <Option value="1">Oy</Option>
+            </Select>
+          </Form.Item>
+          <Form.Item name="xStart" label="Longitude start" rules={[{ required: true }]}>
+            <Input placeholder="Longitude start" />
+          </Form.Item>
+          <Form.Item name="yStart" label="Latitude start" rules={[{ required: true }]}>
+            <Input placeholder="Latitude start" />
+          </Form.Item>
+          <Form.Item name="xEnd" label="Longitude end" rules={[{ required: true }]}>
+            <Input placeholder="Longitude end" />
+          </Form.Item>
+          <Form.Item name="yEnd" label="Latitude end" rules={[{ required: true }]}>
+            <Input placeholder="Latitude end" />
+          </Form.Item>
+          <Form.Item name="z" label="Z" rules={[{ required: true }]}>
+            <Input placeholder="Z" />
+          </Form.Item>
+          <Form.Item>
+            <Button
+              type="primary"
+              shape="round"
+              icon={<HighlightOutlined />}
+              size={"large"}
+              style={{ width: "30%", minWidth: "100px", marginLeft: "30%", marginRight: "30px" }}
+              htmlType="submit"
+            >
+              Draw
+            </Button>
+            <Button htmlType="button" onClick={onReset} style={{ width: "100px", marginRight: "30px" }}>
+              Reset
+            </Button>
+          </Form.Item>
+        </Form>
 
-      <TextArea
-        rows={10}
-        placeholder="Result will be shown here, phờ rét cần trôn A tu cóp pi"
-        value={drawCircle(formValue)}
-      />
+        <TextArea
+          rows={10}
+          placeholder="Result will be shown here, phờ rét cần trôn A tu cóp pi"
+          value={drawCircle(formValue)}
+        />
+      </div>
     </div>
   );
 };

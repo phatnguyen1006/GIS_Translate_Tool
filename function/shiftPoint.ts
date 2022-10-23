@@ -30,7 +30,7 @@ export const shiftPoint = ({
     newLat = lat;
     newZ = z + (distance * direction);
   }
-  result += `[${newLong}, ${newLat}, ${newZ}],`;
+  result += `[${newLong}, ${newLat}, ${newZ}],\n`;
 
   console.log(direction);
 

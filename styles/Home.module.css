@@ -108,6 +108,57 @@
   margin-left: 0.5rem;
 }
 
+.landingPageContainer {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.landingPageContainer>*+* {
+  padding-top: 100px;
+}
+
+.landingPageContainer>.groupButtonContainer {
+  width: 50%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.shiftPage {
+  /* width: 50%; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.formArea {
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+}
+
+.formContainer {
+  width: 50vw;
+  /* display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; */
+}
+
+.formContainer>.drawButton {
+  width: "200px";
+  margin-left: "30%";
+  margin-right: "30px";
+}
+
 @media (max-width: 600px) {
   .grid {
     width: 100%;
@@ -116,13 +167,16 @@
 }
 
 @media (prefers-color-scheme: dark) {
+
   .card,
   .footer {
     border-color: #222;
   }
+
   .code {
     background: #111;
   }
+
   .logo img {
     filter: invert(1);
   }

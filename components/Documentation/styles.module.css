@@ -3,3 +3,7 @@
 .documentContainer>p {
     color: white;
 }
+
+.documentContainer>h3 {
+    color: cornflowerblue;
+}

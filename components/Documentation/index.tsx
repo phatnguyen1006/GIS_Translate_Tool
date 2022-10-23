@@ -4,8 +4,9 @@ import styles from "./styles.module.css";
 export default function Documentation() {
   return (
     <div className={styles.documentContainer}>
-      <h1>Documentation</h1>
-
+      <h1>GIS_Translate Tool</h1>
+      <hr />
+      <p>Tools được phát triển trong 2 buổi trưa nên UI không được vừa mắt, mong quý bạn thông cảm :( xin cảm ơn</p>
     </div>
   );
 }

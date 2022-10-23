@@ -4,7 +4,6 @@ export interface ILocationInput {
   axis: string;
   direction: string;
   location: string;
-  z: string;
   distance: string;
 }
 
@@ -12,7 +11,6 @@ export const splitFunction = ({
   axis,
   direction,
   location,
-  z,
   distance,
 }: ILocationInput): ShiftPointCrops[] | void => {
   let result: ShiftPointCrops[] = [];
@@ -48,7 +46,7 @@ export const splitFunction = ({
       direction: parseInt(direction),
       lon: parseFloat(point.split(",")[0].trim()),
       lat: parseFloat(point.split(",")[1].trim()),
-      z: parseInt(z),
+      z: parseInt(point.split(",")[2].trim()),
       distance: parseInt(distance),
     };
 
