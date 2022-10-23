@@ -7,6 +7,7 @@ import { HighlightOutlined } from "@ant-design/icons";
 import { drawCircle } from "@function";
 import { ICircleProps } from "@types";
 import DrawCircleDocumentation from "@components/Documentation/drawCircle.docs";
+import Head from "next/head";
 
 const { Option } = Select;
 const { TextArea } = Input;
@@ -51,6 +52,10 @@ const Circle: NextPage = () => {
 
   return (
     <div className={styles.shiftPage}>
+      <Head>
+        <title>Drawing Circle</title>
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+      </Head>
       <DrawCircleDocumentation />
       <div className={styles.formArea} style={{ backgroundColor: "white" }}>
         <Form

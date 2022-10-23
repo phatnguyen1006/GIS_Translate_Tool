@@ -16,7 +16,7 @@ const Home: NextPage = () => {
   return (
     <div className={styles.landingPageContainer}>
       <Head>
-        <title>Tools</title>
+        <title>Dashboard</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
       <Documentation />

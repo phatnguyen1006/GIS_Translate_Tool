@@ -7,6 +7,7 @@ import { CaretUpOutlined } from "@ant-design/icons";
 import { shiftPoint } from "@function";
 import { ShiftPointCrops } from "@types";
 import ShiftPontDocumentation from "@components/Documentation/shiftPoint.docs";
+import Head from "next/head";
 
 const { Option } = Select;
 const { TextArea } = Input;
@@ -45,6 +46,10 @@ const ShiftPoint: NextPage = () => {
   return (
 
     <div className={styles.shiftPage}>
+      <Head>
+        <title>Shifting Point</title>
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+      </Head>
       <ShiftPontDocumentation />
       <div className={styles.formArea} style={{ backgroundColor: "white" }}>
         <Form

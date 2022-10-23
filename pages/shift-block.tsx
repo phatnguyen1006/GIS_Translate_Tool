@@ -9,6 +9,7 @@ import { splitFunction, ILocationInput } from "@helpers";
 
 import styles from "../styles/Home.module.css";
 import ShiftBlockDocumentation from "@components/Documentation/shiftBlock.docs";
+import Head from "next/head";
 
 const { Option } = Select;
 const { TextArea } = Input;
@@ -47,6 +48,10 @@ const ShiftBlock: NextPage = () => {
 
   return (
     <div className={styles.shiftPage}>
+      <Head>
+        <title>Shifting Block</title>
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+      </Head>
       <ShiftBlockDocumentation />
       <div className={styles.formArea} style={{ backgroundColor: "white" }}>
         <Form
