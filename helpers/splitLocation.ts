@@ -46,7 +46,7 @@ export const splitFunction = ({
       direction: parseInt(direction),
       lon: parseFloat(point.split(",")[0].trim()),
       lat: parseFloat(point.split(",")[1].trim()),
-      z: parseInt(point.split(",")[2].trim()),
+      z: parseFloat(point.split(",")[2].trim()),
       distance: parseInt(distance),
     };
 
