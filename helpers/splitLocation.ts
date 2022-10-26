@@ -47,7 +47,7 @@ export const splitFunction = ({
       lon: parseFloat(point.split(",")[0].trim()),
       lat: parseFloat(point.split(",")[1].trim()),
       z: parseFloat(point.split(",")[2].trim()),
-      distance: parseInt(distance),
+      distance: parseFloat(distance),
     };
 
     result.push(shiftPoint);
