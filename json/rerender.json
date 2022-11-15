@@ -1,0 +1,19 @@
+{
+    "type": "simple",
+    "symbol": {
+        "type": "polygon-3d",
+        "symbolLayers": [
+            {
+                "type": "extrude",
+                "size": 0.01,
+                "material": {
+                    "color": "#4D3222"
+                },
+                "edges": {
+                    "type": "solid",
+                    "color": "transparent"
+                }
+            }
+        ]
+    }
+}
