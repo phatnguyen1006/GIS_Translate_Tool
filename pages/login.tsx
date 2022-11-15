@@ -1,6 +1,7 @@
 import {
     Button,
     Cascader,
+    Checkbox,
     DatePicker,
     Form,
     Input,
@@ -10,78 +11,81 @@ import {
     Switch,
     TreeSelect,
 } from 'antd';
-import React, { useState } from 'react';
+import { AuthContext } from 'context/authContext';
+import React, { useContext, useEffect, useState } from 'react';
 import styles from '../styles/Insert.module.css';
 
 type SizeType = Parameters<typeof Form>[0]['size'];
 
-const Login: React.FC = () => {
-    const [componentSize, setComponentSize] = useState<SizeType | 'default'>('default');
+interface ILoginInput {
+    username: string;
+    password: string;
+}
 
-    const onFormLayoutChange = ({ size }: { size: SizeType }) => {
-        setComponentSize(size);
+export type IIsLoggedInStorage = "true" | "false";
+
+const Login: React.FC = () => {
+    const { setIsLoggedIn } = useContext(AuthContext);
+    const passwordPattern = "2332";
+
+    useEffect(() => {
+        if (typeof window != "undefined") {
+            let cacheTask = localStorage.getItem("isLoggedIn");
+            if (cacheTask == "true") {
+                setIsLoggedIn(true);
+            }
+        }
+    }, []);
+
+    const onFinish = (values: ILoginInput) => {
+        setIsLoggedIn(values.password === passwordPattern);
+        if (values.password === passwordPattern && typeof window !== 'undefined') {
+            localStorage.setItem("username", values.username);
+            localStorage.setItem("isLoggedIn", "true");
+        }
+    };
+
+    const onFinishFailed = (errorInfo: any) => {
+        console.log('Failed:', errorInfo);
     };
 
     return (
-        <Form
-            labelCol={{ span: 4 }}
-            wrapperCol={{ span: 14 }}
-            layout="horizontal"
-            initialValues={{ size: componentSize }}
-            onValuesChange={onFormLayoutChange}
-            size={componentSize as SizeType}
-        >
-            <Form.Item label="Form Size" name="size">
-                <Radio.Group>
-                    <Radio.Button value="small">Small</Radio.Button>
-                    <Radio.Button value="default">Default</Radio.Button>
-                    <Radio.Button value="large">Large</Radio.Button>
-                </Radio.Group>
-            </Form.Item>
-            <Form.Item label="Input">
-                <Input />
-            </Form.Item>
-            <Form.Item label="Select">
-                <Select>
-                    <Select.Option value="demo">Demo</Select.Option>
-                </Select>
-            </Form.Item>
-            <Form.Item label="TreeSelect">
-                <TreeSelect
-                    treeData={[
-                        { title: 'Light', value: 'light', children: [{ title: 'Bamboo', value: 'bamboo' }] },
-                    ]}
-                />
-            </Form.Item>
-            <Form.Item label="Cascader">
-                <Cascader
-                    options={[
-                        {
-                            value: 'zhejiang',
-                            label: 'Zhejiang',
-                            children: [
-                                {
-                                    value: 'hangzhou',
-                                    label: 'Hangzhou',
-                                },
-                            ],
-                        },
-                    ]}
-                />
-            </Form.Item>
-            <Form.Item label="DatePicker">
-                <DatePicker />
-            </Form.Item>
-            <Form.Item label="InputNumber">
-                <InputNumber />
-            </Form.Item>
-            <Form.Item label="Switch" valuePropName="checked">
-                <Switch />
-            </Form.Item>
-            <Form.Item label="Button">
-                <Button>Button</Button>
-            </Form.Item>
-        </Form>
+        <div className={styles.loginContainer}>
+            <div className={styles.loginForm}>
+                <Form
+                    name="basic"
+                    labelCol={{ span: 8 }}
+                    wrapperCol={{ span: 16 }}
+                    initialValues={{ remember: true }}
+                    onFinish={onFinish}
+                    onFinishFailed={onFinishFailed}
+                    autoComplete="off"
+                >
+                    <Form.Item
+                        label="Your name"
+                        name="username"
+                        style={{ color: "white" }}
+                        rules={[{ required: true, message: 'Please input your username!' }]}
+                    >
+                        <Input />
+                    </Form.Item>
+
+                    <Form.Item
+                        label="Password"
+                        name="password"
+                        rules={[{ required: true, message: 'Please input your password!' }]}
+                    >
+                        <Input.Password />
+                    </Form.Item>
+
+                    <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
+                        <Button type="primary" htmlType="submit">
+                            Submit
+                        </Button>
+                    </Form.Item>
+                </Form>
+            </div>
+        </div>
     );
 };
 
