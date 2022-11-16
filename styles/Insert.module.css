@@ -50,9 +50,23 @@
 
 .checkingTagContainer {
     padding: 30px;
-    width: fit-content;
+    width: 90%;
     height: fit-content;
     background-color: #94d6cb;
+    color: black;
+    display: flex;
+    align-items: center;
+    flex-basis: 60% 40%;
+}
+
+.groupButtonVertical {
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+}
+
+.groupButtonVertical > * + * {
+    margin-top: 20px;
 }
 
 
