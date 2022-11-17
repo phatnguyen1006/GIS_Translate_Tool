@@ -3,6 +3,7 @@ import styles from '../styles/Insert.module.css';
 import { Button, Input, Modal, notification } from 'antd';
 import axios from 'axios';
 import withAuth from 'libs/privateRoute';
+import { SERVER_URL } from '@constants';
 
 const { TextArea } = Input;
 
@@ -57,7 +58,7 @@ function Insert() {
         let jsonStr = JSON.parse(json);
         let rerenderObj = JSON.parse(rerender);
 
-        await axios.post("http://localhost:8000/building/insert", { username: localStorage.getItem("username") ?? "", geoJson: jsonStr, rerender: rerenderObj }).then((res) => {
+        await axios.post(`${SERVER_URL}/building/insert`, { username: localStorage.getItem("username") ?? "", geoJson: jsonStr, rerender: rerenderObj }).then((res) => {
             // console.log(res);
             setCheckingData(res.data);
             // setResponsePayload(JSON.stringify(res.data));
@@ -66,7 +67,7 @@ function Insert() {
     }
 
     async function confirmData(isError: boolean) {
-        await axios.post("http://localhost:8000/building/insert/confirm", { id: checkingData.log?._id, confirm: isError }).then((res) => {
+        await axios.post(`${SERVER_URL}/building/insert/confirm`, { id: checkingData.log?._id, confirm: isError }).then((res) => {
             // console.log(res);
             openNotificationWithIcon("success");
         });
