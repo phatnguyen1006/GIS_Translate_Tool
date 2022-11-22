@@ -58,7 +58,7 @@ function Insert() {
         let jsonStr = JSON.parse(json);
         let rerenderObj = JSON.parse(rerender);
 
-        await axios.post(`${SERVER_URL}/building/insert`, { username: localStorage.getItem("username") ?? "", geoJson: jsonStr, rerender: rerenderObj }).then((res) => {
+        await axios.post(`${SERVER_URL}/building/insert`, { username: localStorage.getItem("username") ?? "", geoJson: jsonStr, renderer: rerenderObj }).then((res) => {
             // console.log(res);
             setCheckingData(res.data);
             // setResponsePayload(JSON.stringify(res.data));
@@ -73,25 +73,26 @@ function Insert() {
         });
     }
 
+    // <div className={styles.headerCheckingContainer}>
+    //             <div className={styles.checkingTagContainer}>
+    //                 <div style={{ width: "100%" }}>
+    //                     <h2>Data của bạn</h2>
+    //                     {/* <TextArea style={{ width: "90%" }} rows={10} placeholder="Schema" readOnly value={Object.assign({}, JSON.parse(responsePayload))} /> */}
+    //                     {checkingData.json.nodes.map((f, i) => <p key={i}>{f.map(unit => `${unit} - `)}</p>)}
+    //                     <p>block_name: {checkingData.json.block_name}</p>
+    //                     <p>block_height: {checkingData.json.block_height}</p>
+    //                     <p>color: {checkingData.json.color}</p>
+    //                 </div>
+    //                 <div className={styles.groupButtonVertical}>
+    //                     <Button type="primary" disabled={checkingData.json.id == ""} onClick={() => confirmData(false)} style={{ marginRight: 20 }}>Correct</Button>
+    //                     <Button type="primary" disabled={checkingData.json.id == ""} danger onClick={() => confirmData(true)}>Incorrect</Button>
+    //                 </div>
+    //             </div>
+    //         </div>
+
     return (
         <div className={styles.container}>
-            <div className={styles.headerCheckingContainer}>
-                <div className={styles.checkingTagContainer}>
-                    <div style={{ width: "100%" }}>
-                        <h2>Data của bạn</h2>
-                        {/* <TextArea style={{ width: "90%" }} rows={10} placeholder="Schema" readOnly value={Object.assign({}, JSON.parse(responsePayload))} /> */}
-                        {checkingData.json.nodes.map((f, i) => <p key={i}>{f.map(unit => `${unit} - `)}</p>)}
-                        <p>block_name: {checkingData.json.block_name}</p>
-                        <p>block_height: {checkingData.json.block_height}</p>
-                        <p>color: {checkingData.json.color}</p>
-                    </div>
-                    <div className={styles.groupButtonVertical}>
-                        <Button type="primary" disabled={checkingData.json.id == ""} onClick={() => confirmData(false)} style={{ marginRight: 20 }}>Correct</Button>
-                        <Button type="primary" disabled={checkingData.json.id == ""} danger onClick={() => confirmData(true)}>Incorrect</Button>
-                    </div>
-                </div>
-                <Button type="primary" onClick={showModal}>Submit to DB</Button>
-            </div>
+            <Button type="primary" onClick={showModal}>Submit to DB</Button>
             <div className={styles.headerCheckingContainer}>
                 <TextArea style={{ width: "48%" }} rows={40} placeholder="Nhap GeoJSON" onChange={(e) => setJSON(e.target.value)} />
                 <TextArea style={{ width: "48%" }} rows={40} placeholder="Nhap JSON rerender" onChange={(e) => setRerender(e.target.value)} />
